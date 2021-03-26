@@ -1,0 +1,75 @@
+Cell Model
+Cell 模型
+
+What is a Cell?
+什么是 Cell？
+
+A Cell is the most basic structure needed to represent a single piece of data in Nervos. The data contained in a Cell can take many forms, including CKBytes or tokens, code like Javascript, or even serialized data like JSON strings. There are no restrictions on the type of data included, so developers have complete flexibility in what they choose to work with.
+Cell表示Nervos中的单个数据所需的最基本的结构。Cell中包含的数据可以采用多种形式，包括CKBytes或代币，Javascript之类的代码，甚至是JSON字符串之类的序列化数据。所包含的数据类型没有限制，因此开发人员可以完全灵活地选择要使用的数据。
+
+Every Cell contains a tiny program called a Lock Script that defines who has permission to use it. Most commonly a Lock Script will define a single user as the owner of the Cell, but it can also do more complex operations such as having multiple owners (multi-sig) or time-locking for conditional usage within certain time-frames.
+每个Cell都包含一个被称为锁定脚本（Lock Script）的微型程序，该程序定义谁有权使用它。最常见的是，锁定脚本会将单个用户定义为Cell的所有者，但是它也可以执行更复杂的操作，例如具有多个所有者（multi-sig）或对特定时间范围内的条件使用进行时间锁定。
+
+A Cell can optionally include a second program called a Type Script that enforces a set of rules on how the Cell can be used. This gives developers the ability to create complex smart contracts that have a wide range of use cases from CryptoKitties to tokens, DeFi, and everything in between.
+Cell可以选择包括称为类型脚本（Type Script）的第二个程序，，该程序强制执行有关如何使用Cell的一组规则。这使开发人员能够创建复杂的智能合约，这些合约具有广泛的用例，从加密猫（CryptoKitties）到代币、DeFi，以及介于两者之间的所有内容。
+
+What is the Cell Model?
+什么是Cell模型？
+
+The Cell Model defines how individual Cells behave and interact with each other within Nervos, and the process that must be followed to update the data contained within Cells. Those who are familiar with Bitcoin’s UTXO model will notice similarity since the Cell Model is directly inspired by it.
+Cell模型定义了各个Cells在Nervos中的行为方式以及彼此之间的相互作用，以及更新Cells中包含的数据所必须遵循的过程。那些熟悉比特币的UTXO模型的人会注意到相似之处，因为Cell模型是直接受其启发的。
+
+Cells are immutable, meaning they cannot change once added to the blockchain. To update any data, the containing Cell must undergo a process called “consumption”. When a Cell is “consumed” the data is extracted and the Cell is destroyed. While extracted, the data can be updated as necessary. A new Cell is then created with the updated data and added to the blockchain.
+Cell是不可变的，这意味着它们一旦添加到区块链中就无法更改。为了更新任何数据，包含得Cell必须经历一个称为“消耗”的过程。当一个Cell被“消耗”时，数据被提取并且该Cell被破坏。提取后，可以根据需要更新数据。然后使用更新的数据创建一个新的Cell，并将其添加到区块链中。
+
+A Cell can only be consumed one time. A Cell that has not been consumed is known as a Live Cell. A Cell that has been consumed is known as a Dead Cell. Once a Cell is dead, it can never be used again.
+一个Cell只能消耗一次。尚未消耗的Cell称为活动Cell（Live Cell）。已消耗的Cell称为无效Cell（Dead Cell）。Cell失效后，将无法再使用。
+
+Transactions are used to explain changes in Cell data. Specified within the transaction is a group of Live Cells to consume, and a group of new Cells to create with updated data. The transaction is validated by the network by executing all the Lock Scripts and Type Scripts in every Cell within the transaction. This ensures that all the rules defined by the developers are being followed and that no one has cheated.
+事务用于解释Cell数据中的更改。在事务中指定的是一组要使用的活动Cells，以及一组要使用更新的数据创建的新Cells。网络通过在事务内的每个Cell中执行所有锁定脚本和类型脚本来验证事务。这样可以确保遵循开发人员定义的所有规则，并且没有人被欺骗。
+
+First-Class Assets
+区块链中的“一等公民” ———— 加密资产
+（详见Jan的这篇文章：https://talk.nervos.org/t/first-class-asset/405）
+
+Nervos’ Cell Model treats all digital assets, such as CKBytes, tokens, and digital collectibles, as the exclusive property and responsibility of their owner. Assets must adhere to smart contract rules when they are included in transactions, but the asset itself belongs to the user, not the smart contract. The difference is subtle, but it is important.
+Nervos的Cell模型将所有数字资产（例如CKBytes、代币和数字收藏品）视为其所有者的专有财产和责任。当资产包含在交易中时，它们必须遵守智能合约规则，但是资产本身属于用户，而不是智能合约。差异是细微的，但很重要。
+
+When a user owns the asset, only they have permission to use it. Not even the smart contract that defines the token has permission to the asset. This means that even if an exploit was found in the contract code, the attacker would still be locked out of the assets because they are under user control. This completely mitigates the effects of the attack.
+当用户拥有资产时，只有他们有权使用它。甚至定义代币的智能合约都没有对资产的许可权限。这意味着，即使在合同代码中发现了漏洞，攻击者仍将被锁定在资产之外，因为它们处于用户控制之下。这完全减轻了攻击的影响。
+
+Clearly defining ownership of an asset also makes it clear who should be responsible for its upkeep. Assets take up space on Nervos, and therefore require a small recurring upkeep fee commonly known as State Rent. The user is the owner and is therefore responsible for this, not the smart contract. We will cover more about State Rent in the Economics section.
+明确定义资产的所有权，还可以清楚地确定谁应对资产的维护负责。资产占用了Nervos的空间，因此需要支付少量的维护费用，通常被称为状态租赁（State Rent）。用户是所有者，因此应对此负责，而不是智能合约。我们将在“经济学”部分中介绍有关状态租赁的更多信息。
+
+Transaction Fees Paid by Anyone
+任何人支付的交易费
+
+Transaction fees are most often paid by the person sending funds or executing a smart contract. However, there are cases where it is beneficial to have a different party cover the associated fees.
+交易费通常由发送资产或执行智能合约的人支付。但是，在某些情况下，由另一方负担相关费用是有利的。
+
+A common scenario is the transfer of tokens from one party to another. The sender must own the token then want to transfer and enough CKBytes to cover the cost of the transaction. This creates a usability problem for the user.
+一种常见的情况是将代币从一方转移到另一方。发送方必须拥有代币，然后才能进行转移，并且要有足够的CKBytes来支付交易费用。这给用户带来了可用性问题。
+
+The flexibility of the Cell Model allows transaction fees to be paid by any party. This can significantly improve the experience for a user since owning CKBytes is no longer an absolute requirement. The receiver or a third-party can pay the fee, greatly simplifying the process for the user.
+Cell模型的灵活性允许交易费用由任何一方支付。由于拥有CKBytes不再是绝对要求，因此可以极大地改善用户的体验。接收方或第三方可以支付费用，从而大大简化了用户的流程。
+
+Scalability
+可扩展性
+
+The Cell Model separates the concepts of computation and validation for smart contract execution. Computation is the process of generating new data and it is done off-chain before a transaction is sent to the network. Validation ensures that the data conforms with the rules set by the developer and is done on-chain by full nodes after being received by the network. Offloading computation reduces the burden on full nodes, raising the total processing capacity of the network.
+Cell模型将计算和验证的概念分开，以执行智能合约。计算是生成新数据的过程，它是在将事务发送到网络之前在链下完成的。验证可确保数据符合开发人员设置的规则，并在网络接收到之后由完整节点在链上完成。转移计算减轻了整个节点的负担，从而提高了网络的总处理能力。
+
+Smart contract execution is parallelized in the Cell Model. Every transaction runs independently in its own virtual machine, and multiple virtual machines run simultaneously instead of having to run one after the other. This allows the Cell Model dramatic scaling improvements on modern computers that increase the number of CPU cores they offer with every new generation.
+智能合约执行在Cell模型中并行化。每个事务都在其自己的虚拟机中独立运行，并且多个虚拟机同时运行，而不必一个接一个地运行。这使Cell模型能够在现代计算机上有了显著的扩展性改进，从而增加了它们为每一代产品提供的CPU内核数量。
+
+Transactions are very flexible in the Cell Model. Multiple smart contract operations can often be batched into a single transaction instead of having to construct multiple distinct transactions. This cuts down on the overhead involved with a transaction, streamlining the process by reducing the amount of processing and transaction fees required.
+Cell模型中的事务非常灵活。通常可以将多个智能合约操作批处理到单个交易中，而不必构造多个不同的交易。这减少了交易涉及的开销，通过减少所需的处理量和交易费用来简化流程。
+
+The unique structure of the Cell Model makes it inherently scalable. By combining these methods together, Nervos is able to achieve much higher levels of smart contract scalability that would not be possible otherwise.
+Cell模型的独特结构使其具有固有的可扩展性。通过将这些方法结合在一起，Nervos能够实现更高水平的智能合约可扩展性，而这是其他方式无法实现的。
+
+Further Reading
+进一步阅读
+For more information, please see Nervos Network’s blog post on the Cell Model.
+有关更多信息，请参见Nervos Network在Cell Model上的博客文章。
+（来自Jan关于理解CKB的Cell模型的文章：https://talk.nervos.org/t/ckb-cell/1562）
