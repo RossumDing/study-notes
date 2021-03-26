@@ -1,0 +1,103 @@
+Economics
+经济学
+
+The Economics of the CKByte
+CKByte的经济学
+
+The CKByte is the native token of Nervos, and it is used to pay for the three types of fees that exist: Cycles (computation), Transaction Fees (security), and State Rent (storage).
+CKByte是Nervos的原生代币，用于支付现有的三种费用：周期（计算），交易费用（安全）和状态租金（存储）。
+
+- Cycles are fees paid to miners based on the amount of computer resources that are used to verify a transaction. These are measured by CKB-VM during the execution of any smart contracts in a transaction.
+- 周期是根据用于验证交易的计算机资源量支付给矿工的费用。这些由CKB-VM在执行交易中的任何智能合约期间进行衡量。
+- Transaction Fees are paid to miners for providing the computing power that provides security to the network.
+- 交易费支付给矿工，以便为网络提供能够保障安全性的计算能力。
+- State Rent is paid to miners for providing storage space to persist the data in a transaction.
+- 状态租金支付给矿工，因为他们提供了存储空间，使得在交易中能够持久保存数据。
+
+Cycles and Transaction Fees are paid one time to process and insert the transaction into the blockchain. State Rent is paid continuously to persist the data until it is removed.
+一次性支付周期和交易费，用来处理并将交易插入到区块链中。持续为状态占用支付费用，以保留数据直到将其删除。
+
+Owning one CKByte entitles the holder to one byte of data storage on Nervos. When a new Cell is created, the user must own an amount of CKBytes equal to the space the Cell will occupy. These CKBytes will remain locked the entire time the Cell exists. When the Cell is consumed, the lock is released, and the CKBytes can be used again. State Rent is automatically paid while the CKBytes are locked.
+拥有一个CKByte可使持有者有权在Nervos上存储一个字节的数据。创建新的Cell时，用户必须拥有等于该Cell所占用空间的CKBytes数量。这些CKBytes将在整个Cell存在期间保持锁定状态。当Cell被使用消耗时，状态将会被释放，并且可以再次使用CKBytes。当CKBytes锁定时，将自动支付状态租金。
+
+All assets on Nervos require data storage, which means they are subject to State Rent. This creates direct value alignment because CKBytes are required to maintain an asset on Nervos. More about Value Alignment and State Rent are covered in the following sections.
+Nervos上的所有资产都需要数据存储，这意味着它们需要支付状态租金。因为在Nervos上维护资产需要CKBytes，所以这将产生直接的价值对齐。以下各节介绍了有关价值调整和状态租金的更多信息。
+
+Value Alignment
+价值取向
+
+As the value on a platform grows, it is important that the security of the platform also grows. If it does not, you can end up in a scenario where there is too little security for the value being stored. It would be like adding more and more gold into a bank vault, but never adding any additional guards. This makes it a potential target for attack.
+随着平台价值的增长，平台安全性也必须增强，这一点很重要。如果不这样做，您最终可能会导致在安全性很低的情况下存储价值。这就像在银行金库中添加越来越多的黄金，但从来没有增加任何额外的守卫。这将使其成为潜在的攻击目标。
+
+When miners are paid for their contributions, they are paid using the native token, the CKByte. As the value of the CKByte increases, so do the rewards for protecting the network. This ensures that a scenario is not created where the value of the CKBytes being stored on the network is very high, but the reward for securing the network is too low.
+当矿工们为他们的贡献获得报酬时，他们使用原生代币CKByte进行支付。随着CKByte价的增加，保护网络的奖励也随之增加。这确保了不会产生这样一个场景：存储在网络上的CKBytes价值非常高，但保护网络的回报却很低。
+
+However, a problem can develop on multi-asset platforms if the total value of the assets gain value but the native token providing security does not. This is known as the “heavy asset problem”, and it is common among multi-asset platforms.
+然而，如果资产的总价值增加了价值，但提供安全性的原生代币却没有增加价值，那么多资产平台上可能会出现问题。这被称为“重资产问题”，在多资产平台中很常见。
+
+The heavy asset problem exists when there isn’t a strong enough value correlation between the assets and the native token used to secure the underlying platform. Usage of CKBytes for the payment of Cycle and Transaction fees creates some demand similar to Bitcoin and Ethereum. However, history has demonstrated that this model does not rectify the problem.
+当资产与用于保护底层平台的原生代币之间没有足够强的价值相关性时，就存在重资产问题。使用CKBytes支付周期和交易费用会产生一些类似于比特币和以太坊的需求。但是，历史证明该模型不能解决问题。
+
+Nervos addresses this by aligning the CKByte with data storage and mandating State Rent. This creates long-term demand directly, because assets require data storage. Every asset requires CKBytes and is subject to State Rent for the entire duration of its existence.
+Nervos通过将CKByte与数据存储锚定并强制使用状态租金来解决这个问题。由于资产需要数据存储，因此这直接产生了长期需求。每项资产都需要CKBytes，并且在其存在的整个期间都要缴状态租金。
+
+State Rent
+状态租金
+
+Miners are responsible for ensuring that the data on the network is valid and preserved. The Cycle and Transaction fees are paid to ensure proper validation, but once the fee is paid there is no continued incentive for a miner to ensure the data is preserved. State Rent addresses this by continuously providing fees to miners for their participation in preserving the data on the network.
+矿工有责任确保网络上的数据有效并得到保留。支付周期和交易费用以确保正确验证，但是一旦支付费用，就不会继续激励矿工确保数据被保存。状态租金通过不断向矿工提供费用来解决其参与保存网络数据的问题，从而解决了这一问题。
+
+When a user puts data on Nervos they must pay a small amount of State Rent for the space their data occupies. Paying an upfront recurring fee presents a user experience problem since this requires continuous time and attention. Nervos solves this by using targeted inflation on users who are occupying space on Nervos.
+当用户将数据放在Nervos上时，他们必须为数据占用的空间支付少量的状态租金。支付前期重复费用会带来用户体验问题，因为这需要持续的时间和精力。Nervos通过对占用Nervos空间的用户使用目标通货膨胀来解决此问题。
+
+When data is stored on Nervos, an amount of CKBytes is required to be locked. The locked CKBytes are ineligible for interest payments. Even though the number of CKBytes does not change while locked, the value is slowly decreasing because of inflation that only affects users who are storing data on Nervos. This small decrease in value is how State Rent is paid.
+当数据存储在Nervos上时，需要锁定一定数量的CKBytes。锁定的CKBytes没有必要支付利息。即使锁定时CKBytes的数量没有变化，该值仍在缓慢减小，因为膨胀只会影响在Nervos上存储数据的用户。价值的小幅下降是用来支付状态租金的。
+
+The inflation that pays the State Rent is created through a process called Secondary Issuance. Users who are not occupying space on Nervos have the option of gaining interest from Secondary Issuance by locking their CKBytes in the Nervos DAO. We will cover more on these topics in the following sections.
+支付状态租金的通货膨胀是通过称为二次发行的过程产生的。不在Nervos上占用空间的用户可以选择通过将其CKByte锁定在Nervos DAO中来从二次发行中获得利息。在以下各节中，我们将详细介绍这些主题。
+
+Base Issuance
+基本发行
+
+During the initial launch of the network the value of the CKByte will be low, which means the security on the network is low. In order to make Nervos a safe and attractive place to store assets, the security must be temporarily subsidized through a process known as Base Issuance.
+在网络的初始启动期间，CKByte的价值将很低，这意味着网络上的安全性很低。为了使Nervos成为一个安全且有吸引力的资产存储场所，必须通过称为基础发行的过程来临时对安全性进行临时补贴。
+
+Base Issuance is very similar to the mining process found in Bitcoin. Miners are paid a fixed amount of CKBytes for providing the computer resources to process transactions and secure the network. Over time the assets stored on the network will gain value, and fewer subsidies are necessary.
+基本发行与比特币中的挖矿过程非常相似。为矿工提供固定数量的CKByte，用于提供处理交易和保护网络的计算机资源。随着时间的流逝，存储在网络上的资产将获得价值，并且需要的补贴将更少。
+
+Base Issuance is paid for through using a fixed inflationary schedule. Approximately every four years the subsidy amount is halved until eventually stopping when the cap of 33.6 billion CKBytes have been issued. This provides a monetary policy that is transparent and predictable.
+基本发行是通过使用固定的通胀时间表来支付的。大约每四年将补贴金额减半，直到发行336亿个CKByte的上限时，补贴最终停止。这提供了透明且可预测的货币政策。
+
+Secondary Issuance
+二次发行
+
+After the Base Issuance has ended, some have theorized that the incentive to miners will not provide enough security if it is only paid with fees from Cycles and Transactions. At the same time, miners require long term incentives that are directly aligned to ensure the data in Nervos is persisted. Both of these concerns are addressed through a process called Secondary Issuance.
+基本发行结束后，一些理论认为，如果仅从“周期和交易”中支付费用，对矿工的激励就无法提供足够的保障。同时，矿工需要长期的激励措施，这些激励措施必须与Nervos中的数据保持一致。这两个问题都通过称为“二次发行”的过程解决。
+
+Secondary Issuance follows a fixed inflation schedule of 1.344 billion CKBytes per year. This amount does not change. Unlike Base Issuance, Secondary Issuance does not affect everyone on the network. It is a small and targeted inflation from users that occupy space on Nervos or hold their CKBytes outside of the Nervos DAO.
+二次发行遵循固定的每年13.44亿CKBytes的通胀计划。此金额不变。与基本发行不同，二次发行不会影响网络上的每个人。这是占用Nervos上的空间或将其CKByte保留在Nervos DAO之外的用户的一种有针对性的小膨胀。
+
+The CKBytes from Secondary Issuance are distributed to:
+二次发行的CKBytes分配给：
+
+- Miners maintaining the network (State Rent).
+- 维护网络的矿工（状态租金）。
+- Users of the Nervos DAO.
+- Nervos DAO的用户
+- The Nervos Treasury for continued development.
+- 保障持续发展的Nervos国库。
+
+Nervos DAO
+
+Holders of CKBytes have the option of locking them in the Nervos DAO to gain interest in a process similar to staking on other platforms. When this is done, the holder will accrue CKByte interest at a rate directly proportional to that of Secondary Issuance. This offsets the long-term inflationary effects of Secondary Issuance exactly, resulting in no loss of value over time.
+CKBytes的持有者可以选择将CKBytes锁定在Nervos DAO中，类似于在其他平台上进行质押从而获得利息。完成此操作后，持有人将以与二次发行利率成正比的利率累计CKByte利息。这恰好抵消了二次发行的长期通货膨胀影响，不会随时间造成价值损失。
+
+Users who are occupying space on Nervos have their CKBytes locked, which are then ineligible to be placed in the Nervos DAO. Once the Cells occupying space are consumed, the CKBytes are released, and can then be placed in the Nervos DAO. This provides an incentive to remove unnecessary data from Nervos, therefore keeping the blockchain more manageable in the long term.
+在Nervos上占用空间的用户将其CKBytes锁定，然后就不能将其放置在Nervos DAO中。一旦占据空间的Cell被消耗，CKBytes就会被释放出来，然后可以将其放置在Nervos DAO中。这为从Nervos中删除不必要的数据提供了动力，从而使区块链在长期内更易于管理。
+
+Further Reading
+进一步阅读
+
+For more information on the economics of Nervos, please see the Crypto-Economics RFC.
+有关Nervos经济学的更多信息，请参阅Crypto-Economics RFC。
+（https://github.com/nervosnetwork/rfcs/blob/master/rfcs/0015-ckb-cryptoeconomics/0015-ckb-cryptoeconomics.md）
